@@ -26,6 +26,7 @@ export default function Home(){
 
       <section className={styles.hero}>
         <div className={styles.heroCopy}>
+          <div className={styles.heroGhost}>MAXOUT</div>
           <p>MAXOUT / 2026</p>
           <h1>BUILT FOR<br/>MORE.</h1>
           <span>Clothing built to last.</span>
@@ -44,6 +45,12 @@ export default function Home(){
         </div>
       </section>
 
+      <div className={styles.marquee} aria-hidden="true">
+        <div>
+          {Array.from({length:6}).map((_,i)=><span key={i}>MAXOUT / BUILT FOR MORE / EST. 2026 / </span>)}
+        </div>
+      </div>
+
       <section className={styles.section} id="shop">
         <div className={styles.sectionHead}>
           <h2>Featured</h2>
@@ -52,6 +59,7 @@ export default function Home(){
         <div className={styles.products}>
           {featured.map((product) => product && (
             <Link className={styles.product} href={"/products/"+product.slug} key={product.slug}>
+              <span className={styles.productIndex}>{String(featured.indexOf(product)+1).padStart(2,"0")}</span>
               <div className={styles.productImage}>
                 {product.image && <Image src={product.image} alt={product.name} fill sizes="(max-width:800px) 100vw, 50vw"/>}
               </div>
@@ -72,6 +80,7 @@ export default function Home(){
         <div className={styles.collections}>
           {archiveCollections.slice(0,4).map((collection)=>(
             <Link className={styles.collection} href={"/collections/"+collection.slug} key={collection.slug}>
+              <span className={styles.collectionIndex}>{String(archiveCollections.indexOf(collection)+1).padStart(2,"0")}</span>
               <div className={styles.collectionImage}>
                 {collection.image ? (
                   <Image src={collection.image} alt={collection.name} fill sizes="(max-width:800px) 100vw, 50vw"/>
@@ -92,7 +101,7 @@ export default function Home(){
         <div className={styles.blackoutTop}>
           <div>
             <p>COMING NEXT</p>
-            <h2>BLACKOUT</h2>
+            <h2><span>BLACK</span>OUT</h2>
           </div>
           <div className={styles.blackoutCopy}>
             <span>{activeDrop.subtitle}</span>
@@ -102,7 +111,7 @@ export default function Home(){
         <div className={styles.blackoutGrid}>
           {activeDrop.products.map((product)=>(
             <Link href={"/products/"+product.slug} className={styles.blackoutCard} key={product.slug}>
-              <div className={styles.blackoutVisual}>MAXOUT</div>
+              <div className={styles.blackoutVisual}><span>{product.number}</span><b>MAXOUT</b></div>
               <div className={styles.blackoutMeta}>
                 <span>{product.name}</span>
                 <span>{"$"+product.price.toFixed(2)}</span>
