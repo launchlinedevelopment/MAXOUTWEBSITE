@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { activeDrop } from "@/lib/drop";
+import CartLink from "@/components/cart-link";
 
 function Mark(){return <div className="mark">MAX<span>OUT</span></div>}
 
@@ -8,7 +9,7 @@ export default function Home(){
     <section className="hero">
       <nav className="nav shell">
         <Mark/>
-        <div className="navLinks"><a href="#drop">DROP</a><a href="#story">STORY</a><span className="cart">CART / 0</span></div>
+        <div className="navLinks"><a href="#drop">DROP</a><a href="#story">STORY</a><CartLink/></div>
       </nav>
       <div className="heroNoise"/>
       <div className="heroGrid shell">
