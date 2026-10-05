@@ -1,0 +1,47 @@
+.page{background:#fff;color:#111;min-height:100vh}
+.header{height:72px;display:flex;align-items:center;justify-content:space-between;width:min(1380px,calc(100% - 48px));margin:0 auto}
+.logo{font-size:28px;font-weight:900;letter-spacing:-.07em}
+.nav{display:flex;gap:28px;align-items:center;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:660px;border-top:1px solid #eee;border-bottom:1px solid #eee}
+.heroCopy{padding:74px max(24px,calc((100vw - 1380px)/2)) 64px;display:flex;flex-direction:column;justify-content:flex-end}
+.heroCopy p{font-size:10px;letter-spacing:.14em;margin:0 0 18px;color:#777}
+.heroCopy h1{font-size:clamp(58px,8vw,118px);line-height:.84;letter-spacing:-.075em;margin:0 0 18px;font-weight:700}
+.heroCopy span{font-size:16px;color:#666;margin-bottom:30px}
+.heroCopy a{font-size:10px;text-transform:uppercase;letter-spacing:.12em;border-bottom:1px solid #111;width:max-content;padding-bottom:3px}
+.heroProduct{position:relative;background:#f4f4f2;min-height:660px}
+.heroProduct img{object-fit:contain;padding:4%}
+.section{width:min(1380px,calc(100% - 48px));margin:0 auto;padding:88px 0}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;margin-bottom:24px}
+.sectionHead h2{font-size:28px;font-weight:500;letter-spacing:-.04em;margin:0}
+.sectionHead a,.sectionHead span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#666}
+.products{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.productImage{height:560px;position:relative;background:#f4f4f2;overflow:hidden}
+.productImage img{object-fit:contain;padding:4%}
+.productInfo{display:flex;justify-content:space-between;padding-top:12px;font-size:12px}
+.collections{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.collectionImage{height:470px;position:relative;background:#f4f4f2;overflow:hidden}
+.collectionImage img{object-fit:cover}
+.collectionImage>span{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;font-weight:700;color:#ccc}
+.collectionInfo{display:flex;justify-content:space-between;align-items:center;padding:12px 0 28px}
+.collectionInfo h3{font-size:16px;font-weight:500;margin:0}
+.collectionInfo span{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:#666}
+.blackout{background:#0f0f0f;color:#fff;padding:100px max(24px,calc((100vw - 1380px)/2))}
+.blackoutTop{display:grid;grid-template-columns:1.5fr .5fr;gap:64px;align-items:end}
+.blackoutTop p{font-size:10px;letter-spacing:.14em;color:#777;margin:0 0 20px}
+.blackoutTop h2{font-size:clamp(82px,13vw,190px);line-height:.76;letter-spacing:-.085em;margin:0}
+.blackoutCopy span{display:block;font-size:13px;margin-bottom:14px}
+.blackoutCopy p{font-size:14px;line-height:1.5;color:#aaa;letter-spacing:0;margin:0}
+.blackoutGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:62px}
+.blackoutVisual{aspect-ratio:4/5;background:#171717;display:grid;place-items:center;font-size:clamp(40px,5vw,78px);font-weight:800;letter-spacing:-.06em;color:#252525}
+.blackoutMeta{display:flex;justify-content:space-between;padding-top:12px;font-size:12px}
+.blackoutMeta span:last-child{color:#aaa}
+.footer{width:min(1380px,calc(100% - 48px));margin:0 auto;min-height:170px;display:grid;grid-template-columns:1fr auto auto;gap:48px;align-items:center;border-top:1px solid #eee}
+.footer>div{display:flex;gap:22px}
+.footer a,.footer>span{font-size:10px;color:#666}
+@media(max-width:800px){
+  .header{width:min(100% - 24px,1380px);height:64px}.nav a:not(:last-child){display:none}.nav{gap:0}
+  .hero{grid-template-columns:1fr}.heroCopy{min-height:420px;padding:54px 18px 38px}.heroCopy h1{font-size:56px}.heroProduct{min-height:480px}
+  .section{width:min(100% - 24px,1380px);padding:64px 0}.products,.collections{grid-template-columns:1fr}.productImage{height:440px}.collectionImage{height:420px}
+  .blackout{padding:76px 12px}.blackoutTop{grid-template-columns:1fr;gap:28px}.blackoutTop h2{font-size:84px}.blackoutGrid{grid-template-columns:1fr}
+  .footer{width:min(100% - 24px,1380px);grid-template-columns:1fr;gap:22px;padding:36px 0}
+}
