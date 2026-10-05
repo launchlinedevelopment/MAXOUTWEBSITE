@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { CartProvider } from "@/components/cart-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://maxoutshop.com"),
@@ -10,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{children: React.ReactNode}>) {
-  return <html lang="en"><body>{children}</body></html>;
+  return <html lang="en"><body><CartProvider>{children}</CartProvider></body></html>;
 }
