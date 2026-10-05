@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { activeDrop } from "@/lib/drop";
+import Image from "next/image";
+import { activeDrop, archiveCollections } from "@/lib/drop";
 import CartLink from "@/components/cart-link";
 
 function Mark(){return <div className="mark">MAX<span>OUT</span></div>}
@@ -9,7 +10,7 @@ export default function Home(){
     <section className="hero">
       <nav className="nav shell">
         <Mark/>
-        <div className="navLinks"><a href="#drop">DROP</a><a href="#story">STORY</a><CartLink/></div>
+        <div className="navLinks"><a href="#drop">BLACKOUT</a><a href="#archive">ARCHIVE</a><a href="#story">STORY</a><CartLink/></div>
       </nav>
       <div className="heroNoise"/>
       <div className="heroGrid shell">
@@ -34,6 +35,24 @@ export default function Home(){
           <div className="productVisual"><span className="productNumber">{p.number}</span><span className="productAccent">{p.accent}</span><div className="ghostType">MAXOUT</div></div>
           <div className="productInfo"><div><h2>{p.name}</h2><p>{p.category}</p></div><strong>{"$"+p.price}</strong></div>
         </Link>)}
+      </div>
+    </section>
+
+    <section className="archive shell" id="archive">
+      <header className="sectionHead"><span>PREVIOUS DROPS</span><span>THE MAXOUT ARCHIVE</span></header>
+      <div className="archiveGrid">
+        {archiveCollections.map((collection)=>(
+          <Link className="archiveCard" href={"/collections/"+collection.slug} key={collection.slug}>
+            <div className="archiveVisual">
+              {collection.image ? <Image src={collection.image} alt={collection.name+" collection"} fill sizes="(max-width: 900px) 100vw, 50vw" /> : <div className="archiveType">{collection.name}</div>}
+              <span>{collection.year}</span>
+            </div>
+            <div className="archiveMeta">
+              <div><h2>{collection.name}</h2><p>{collection.subtitle}</p></div>
+              <b>{String(collection.products.length).padStart(2,"0")} ITEMS ↗</b>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
 
