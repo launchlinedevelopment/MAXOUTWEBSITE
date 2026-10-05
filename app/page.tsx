@@ -8,156 +8,110 @@ const core = archiveCollections.find((c) => c.slug === "core");
 const coreHoodie = core?.products.find((p) => p.slug === "maxout-core-hoodie");
 const americaTee = america?.products.find((p) => p.slug === "maxout-america-tee");
 
-function Logo() {
-  return <Link className="logo" href="/">MAXOUT</Link>;
-}
+function Logo(){return <Link className="logo" href="/">MAXOUT</Link>}
 
-export default function Home() {
-  return (
-    <main>
-      <div className="announcement">BLACKOUT DROP COMING SOON — LIMITED RELEASE</div>
+export default function Home(){
+  return <main>
+    <header className="siteHeader shell">
+      <Logo/>
+      <nav className="desktopNav">
+        <a href="#shop">SHOP</a>
+        <a href="#collections">COLLECTIONS</a>
+        <a href="#blackout">BLACKOUT</a>
+        <CartLink/>
+      </nav>
+    </header>
 
-      <header className="siteHeader shell">
-        <button className="menuButton" aria-label="Open menu">MENU</button>
-        <Logo />
-        <nav className="desktopNav">
-          <a href="#new">NEW</a>
-          <a href="#collections">COLLECTIONS</a>
-          <Link href="/collections/core">MEN</Link>
-          <Link href="/collections/core">WOMEN</Link>
-          <CartLink />
-        </nav>
-      </header>
+    <section className="minimalHero">
+      <div className="minimalHeroImage">
+        {america?.image && <Image src={america.image} alt="MAXOUT apparel" fill priority sizes="100vw"/>}
+      </div>
+      <div className="minimalHeroCopy shell">
+        <p>MAXOUT / 2026</p>
+        <h1>BUILT FOR MORE.</h1>
+        <Link href="#shop">SHOP NOW</Link>
+      </div>
+    </section>
 
-      <section className="homeHero">
-        <div className="heroImage">
-          {america?.image && (
-            <Image src={america.image} alt="MAXOUT apparel" fill priority sizes="100vw" />
-          )}
-        </div>
-        <div className="heroOverlay">
-          <p className="eyebrow">NEW DROP / 2026</p>
-          <h1>BLACKOUT<br/>IS NEXT.</h1>
-          <p className="heroSub">A new MAXOUT drop is coming. Built around the same idea: clothing made to be worn hard and worn often.</p>
-          <a className="primaryButton" href="#new">EXPLORE MAXOUT</a>
-        </div>
-      </section>
+    <section className="minimalProducts shell" id="shop">
+      <div className="minimalSectionHead">
+        <h2>Featured</h2>
+        <Link href="/collections/core">View all</Link>
+      </div>
 
-      <section className="homeIntro shell">
-        <p className="sectionLabel">MAXOUT / EST. 2026</p>
-        <div>
-          <h2>Built for More,<br/>Clothing built to last.</h2>
-          <p>Essential pieces. Worn on repeat.</p>
-          <Link className="textLink" href="/collections/core">SHOP ALL →</Link>
-        </div>
-      </section>
-
-      <section className="featureProducts shell" id="new">
-        <div className="sectionTitleRow">
-          <h2>Featured</h2>
-          <Link href="/collections/core">Shop All</Link>
-        </div>
-
-        <div className="featureGrid">
-          {coreHoodie && (
-            <Link className="featureCard large" href={"/products/" + coreHoodie.slug}>
-              <div className="featureImage">
-                {coreHoodie.image && <Image src={coreHoodie.image} alt={coreHoodie.name} fill sizes="(max-width:900px) 100vw, 60vw"/>}
-              </div>
-              <div className="featureMeta">
-                <div><h3>{coreHoodie.name}</h3><p>{coreHoodie.statement}</p></div>
-                <strong>{"$"+coreHoodie.price.toFixed(2)}</strong>
-              </div>
-            </Link>
-          )}
-
-          {americaTee && (
-            <Link className="featureCard" href={"/products/" + americaTee.slug}>
-              <div className="featureImage">
-                {americaTee.image && <Image src={americaTee.image} alt={americaTee.name} fill sizes="(max-width:900px) 100vw, 40vw"/>}
-              </div>
-              <div className="featureMeta">
-                <div><h3>{americaTee.name}</h3><p>{americaTee.statement}</p></div>
-                <strong>{"$"+americaTee.price.toFixed(2)}</strong>
-              </div>
-            </Link>
-          )}
-        </div>
-      </section>
-
-      <section className="blackoutTease">
-        <div className="shell blackoutInner">
-          <div>
-            <p className="eyebrow light">COMING NEXT</p>
-            <h2>BLACKOUT</h2>
+      <div className="minimalProductGrid">
+        {coreHoodie && <Link className="minimalProduct" href={"/products/"+coreHoodie.slug}>
+          <div className="minimalProductImage">
+            {coreHoodie.image && <Image src={coreHoodie.image} alt={coreHoodie.name} fill sizes="(max-width:900px) 100vw, 50vw"/>}
           </div>
-          <div className="blackoutCopy">
-            <p>{activeDrop.manifesto}</p>
-            <a href="#blackout-products">PREVIEW THE DROP →</a>
+          <div className="minimalProductMeta">
+            <span>{coreHoodie.name}</span>
+            <span>{"$"+coreHoodie.price.toFixed(2)}</span>
           </div>
-        </div>
+        </Link>}
 
-        <div className="blackoutProducts shell" id="blackout-products">
-          {activeDrop.products.map((product) => (
-            <Link className="blackoutCard" href={"/products/" + product.slug} key={product.slug}>
-              <div className="blackoutVisual">
-                <span>{product.number}</span>
-                <b>MAXOUT</b>
-              </div>
-              <div className="blackoutMeta">
-                <div><h3>{product.name}</h3><p>{product.category}</p></div>
-                <strong>{"$"+product.price.toFixed(2)}</strong>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="collectionSection shell" id="collections">
-        <div className="sectionTitleRow">
-          <h2>The Collection</h2>
-          <span>Explore MAXOUT</span>
-        </div>
-
-        <div className="collectionTiles">
-          {archiveCollections.slice(0, 4).map((collection) => (
-            <Link className="collectionTile" href={"/collections/" + collection.slug} key={collection.slug}>
-              <div className="collectionTileImage">
-                {collection.image ? (
-                  <Image src={collection.image} alt={collection.name} fill sizes="(max-width:900px) 100vw, 50vw" />
-                ) : (
-                  <div className="collectionFallback">{collection.name}</div>
-                )}
-              </div>
-              <div className="collectionTileText">
-                <div><h3>{collection.name}</h3><p>{collection.subtitle}</p></div>
-                <span>SHOP →</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="newsletter">
-        <div className="shell newsletterInner">
-          <div>
-            <p className="sectionLabel">JOIN THE LIST</p>
-            <h2>Early access.<br/>Private drops.<br/>No spam.</h2>
+        {americaTee && <Link className="minimalProduct" href={"/products/"+americaTee.slug}>
+          <div className="minimalProductImage">
+            {americaTee.image && <Image src={americaTee.image} alt={americaTee.name} fill sizes="(max-width:900px) 100vw, 50vw"/>}
           </div>
-          <form className="newsletterForm">
-            <label htmlFor="email">EMAIL ADDRESS</label>
-            <div><input id="email" type="email" placeholder="you@email.com" /><button type="button">JOIN NOW</button></div>
-            <p>Be first to hear about BLACKOUT and future MAXOUT drops.</p>
-          </form>
-        </div>
-      </section>
+          <div className="minimalProductMeta">
+            <span>{americaTee.name}</span>
+            <span>{"$"+americaTee.price.toFixed(2)}</span>
+          </div>
+        </Link>}
+      </div>
+    </section>
 
-      <footer className="siteFooter shell">
-        <Logo />
-        <div><p>SHOP</p><Link href="/collections/core">Core</Link><Link href="/collections/america">America</Link><a href="#blackout-products">Blackout</a></div>
-        <div><p>HELP</p><a href="mailto:themaxoutshop@gmail.com">Contact Us</a><span>Shipping</span><span>Returns</span></div>
-        <div><p>MAXOUT</p><span>© 2026 MAXOUT</span><span>Clothing built to last.</span></div>
-      </footer>
-    </main>
-  );
+    <section className="minimalCollections shell" id="collections">
+      <div className="minimalSectionHead">
+        <h2>Collections</h2>
+        <span>Archive</span>
+      </div>
+
+      <div className="minimalCollectionGrid">
+        {archiveCollections.slice(0,4).map((collection)=>(
+          <Link className="minimalCollection" href={"/collections/"+collection.slug} key={collection.slug}>
+            <div className="minimalCollectionImage">
+              {collection.image ? <Image src={collection.image} alt={collection.name} fill sizes="(max-width:900px) 100vw, 50vw"/> : <span>{collection.name}</span>}
+            </div>
+            <div className="minimalCollectionMeta">
+              <h3>{collection.name}</h3>
+              <span>Shop</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+
+    <section className="blackoutMinimal" id="blackout">
+      <div className="shell blackoutMinimalInner">
+        <p>COMING NEXT</p>
+        <h2>BLACKOUT</h2>
+        <span>{activeDrop.subtitle}</span>
+        <a href="#blackout-products">Preview drop</a>
+      </div>
+
+      <div className="shell blackoutMinimalGrid" id="blackout-products">
+        {activeDrop.products.map((product)=>(
+          <Link className="blackoutMinimalCard" href={"/products/"+product.slug} key={product.slug}>
+            <div className="blackoutMinimalVisual">MAXOUT</div>
+            <div className="minimalProductMeta">
+              <span>{product.name}</span>
+              <span>{"$"+product.price.toFixed(2)}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+
+    <footer className="minimalFooter shell">
+      <Logo/>
+      <div>
+        <Link href="/collections/core">Shop</Link>
+        <Link href="/collections/america">Collections</Link>
+        <a href="mailto:themaxoutshop@gmail.com">Contact</a>
+      </div>
+      <span>© 2026 MAXOUT</span>
+    </footer>
+  </main>
 }
