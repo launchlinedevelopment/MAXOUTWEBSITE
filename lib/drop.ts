@@ -18,6 +18,9 @@ export type Collection={
   name:string;
   subtitle:string;
   year:string;
+  eyebrow?:string;
+  releaseLabel?:string;
+  manifesto?:string;
   image?:string;
   products:Product[];
 };
@@ -37,6 +40,9 @@ export const activeDrop:Collection={
   name:"BLACKOUT",
   subtitle:"NO NOISE. NO EXCUSES.",
   year:"2026",
+  eyebrow:"DROP 02 / 2026",
+  releaseLabel:"THE NEW ERA OF MAXOUT",
+  manifesto:"BLACKOUT strips everything back. Heavy silhouettes. Dark tones. Sharp details. Built for the days when talking means less than doing.",
   products:[
     {slug:"blackout-hoodie",name:"BLACKOUT Hoodie",price:68,category:"Heavyweight / Unisex",statement:"Built heavy. Worn harder.",number:"01",accent:"OVERSIZED",collection:"blackout",sizes:["S","M","L","XL","2XL"]},
     {slug:"blackout-pants",name:"BLACKOUT Pants",price:58,category:"Heavyweight / Unisex",statement:"Cut for movement. Made to disappear.",number:"02",accent:"RELAXED",collection:"blackout",sizes:["S","M","L","XL","2XL"]},
