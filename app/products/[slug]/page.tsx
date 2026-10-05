@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { activeDrop } from "@/lib/drop";
+import BuyPanel from "@/components/buy-panel";
+import CartLink from "@/components/cart-link";
 
 export function generateStaticParams(){return activeDrop.products.map((p)=>({slug:p.slug}))}
 
@@ -17,7 +19,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
   if(!product)notFound();
 
   return <main className="productPage">
-    <nav className="nav shell"><Link className="mark" href="/">MAX<span>OUT</span></Link><Link href="/#drop">← BACK TO DROP</Link></nav>
+    <nav className="nav shell"><Link className="mark" href="/">MAX<span>OUT</span></Link><div className="pdpNav"><Link href="/#drop">← BACK TO DROP</Link><CartLink/></div></nav>
     <section className="pdp shell">
       <div className="pdpVisual"><span className="pdpNumber">{product.number}</span><div className="pdpGhost">MAXOUT</div><span className="pdpAccent">{product.accent}</span></div>
       <div className="pdpDetails">
@@ -25,9 +27,7 @@ export default async function ProductPage({params}:{params:Promise<{slug:string}
         <h1>{product.name}</h1>
         <p className="pdpStatement">{product.statement}</p>
         <div className="pdpPrice">{"$"+product.price+".00"}</div>
-        <div className="sizeLabel"><span>SELECT SIZE</span><span>SIZE GUIDE</span></div>
-        <div className="sizes">{["S","M","L","XL","2XL"].map((size)=><button key={size}>{size}</button>)}</div>
-        <button className="addButton">ADD TO BAG — {"$"+product.price}</button>
+        <BuyPanel product={product}/>
         <div className="detailRows">
           <p><span>FIT</span><span>{product.accent}</span></p>
           <p><span>DROP</span><span>BLACKOUT 2026</span></p>
