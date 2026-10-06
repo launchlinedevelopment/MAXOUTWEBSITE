@@ -1,15 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import CartLink from "@/components/cart-link";
-import { activeDrop, archiveCollections } from "@/lib/drop";
+import { archiveCollections } from "@/lib/drop";
 import styles from "./home.module.css";
 
 const america = archiveCollections.find((c) => c.slug === "america");
 const core = archiveCollections.find((c) => c.slug === "core");
-const featured = [
-  core?.products.find((p) => p.slug === "maxout-core-hoodie"),
-  america?.products.find((p) => p.slug === "maxout-america-tee"),
-].filter(Boolean);
+const coreHoodie = core?.products.find((p) => p.slug === "maxout-core-hoodie");
+const accessory = core?.products.find((p) => p.slug === "maxout-core-shaker");
+const women = core?.products.find((p) => p.slug === "maxout-core-leggings");
 
 export default function Home(){
   return (
@@ -17,118 +16,77 @@ export default function Home(){
       <header className={styles.header}>
         <Link className={styles.logo} href="/">MAXOUT</Link>
         <nav className={styles.nav}>
-          <a href="#shop">Shop</a>
-          <a href="#collections">Collections</a>
-          <a href="#blackout">Blackout</a>
+          <Link href="/collections/core">SHOP</Link>
+          <Link href="/collections/america">DROPS</Link>
+          <a href="#collection">COLLECTION</a>
           <CartLink/>
         </nav>
       </header>
 
       <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <div className={styles.heroGhost}>MAXOUT</div>
-          <p>MAXOUT / 2026</p>
-          <h1>BUILT FOR<br/>MORE.</h1>
-          <span>Clothing built to last.</span>
-          <a href="#shop">Shop now</a>
+        <div className={styles.heroArt}>
+          {america?.image && <Image src={america.image} alt="MAXOUT America Drop" fill priority sizes="100vw" className={styles.heroBase}/>}
+          {america?.products[2]?.image && <Image src={america.products[2].image} alt="" width={720} height={960} className={styles.heroOverlayImage}/>}
         </div>
-        <div className={styles.heroProduct}>
-          {featured[0]?.image && (
-            <Image
-              src={featured[0].image}
-              alt={featured[0].name}
-              fill
-              priority
-              sizes="(max-width: 800px) 100vw, 50vw"
-            />
-          )}
+        <div className={styles.heroText}>
+          <h1>AMERICA DROP IS HERE</h1>
+          <p>Limited Stock</p>
+          <Link href="/collections/america">Shop Now</Link>
         </div>
       </section>
 
-      <div className={styles.marquee} aria-hidden="true">
+      <section className={styles.statement}>
+        <h2>Built for More, Clothing built to last.</h2>
+        <p>Essential pieces. Worn on repeat.</p>
+        <Link href="/collections/core">Shop All</Link>
+      </section>
+
+      <section className={styles.collectionIntro} id="collection">
+        <p>Explore our latest arrivals in men woman and accessories.</p>
+        <h2>The Collection</h2>
+      </section>
+
+      <section className={styles.collectionGrid}>
+        <Link href="/collections/core" className={styles.collectionCard}>
+          <div className={styles.collectionImage}>
+            {coreHoodie?.image && <Image src={coreHoodie.image} alt="Shop Men" fill sizes="(max-width:900px) 100vw, 33vw"/>}
+          </div>
+          <span>Shop Men</span>
+        </Link>
+
+        <Link href="/collections/core" className={styles.collectionCard}>
+          <div className={styles.collectionImage}>
+            {accessory?.image && <Image src={accessory.image} alt="Shop Accessories" fill sizes="(max-width:900px) 100vw, 33vw"/>}
+          </div>
+          <span>Shop Accessories</span>
+        </Link>
+
+        <Link href="/collections/core" className={styles.collectionCard}>
+          <div className={styles.collectionImage}>
+            {women?.image && <Image src={women.image} alt="Shop Women" fill sizes="(max-width:900px) 100vw, 33vw"/>}
+          </div>
+          <span>Shop Women</span>
+        </Link>
+      </section>
+
+      <section className={styles.join}>
         <div>
-          {Array.from({length:6}).map((_,i)=><span key={i}>MAXOUT / BUILT FOR MORE / EST. 2026 / </span>)}
+          <h2>Join the List</h2>
+          <p>Early access, private sales, and the latest from our studio, straight to your inbox.</p>
         </div>
-      </div>
-
-      <section className={styles.section} id="shop">
-        <div className={styles.sectionHead}>
-          <h2>Featured</h2>
-          <Link href="/collections/core">View all</Link>
-        </div>
-        <div className={styles.products}>
-          {featured.map((product) => product && (
-            <Link className={styles.product} href={"/products/"+product.slug} key={product.slug}>
-              <span className={styles.productIndex}>{String(featured.indexOf(product)+1).padStart(2,"0")}</span>
-              <div className={styles.productImage}>
-                {product.image && <Image src={product.image} alt={product.name} fill sizes="(max-width:800px) 100vw, 50vw"/>}
-              </div>
-              <div className={styles.productInfo}>
-                <span>{product.name}</span>
-                <span>{"$"+product.price.toFixed(2)}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.section} id="collections">
-        <div className={styles.sectionHead}>
-          <h2>Collections</h2>
-          <span>Archive</span>
-        </div>
-        <div className={styles.collections}>
-          {archiveCollections.slice(0,4).map((collection)=>(
-            <Link className={styles.collection} href={"/collections/"+collection.slug} key={collection.slug}>
-              <span className={styles.collectionIndex}>{String(archiveCollections.indexOf(collection)+1).padStart(2,"0")}</span>
-              <div className={styles.collectionImage}>
-                {collection.image ? (
-                  <Image src={collection.image} alt={collection.name} fill sizes="(max-width:800px) 100vw, 50vw"/>
-                ) : (
-                  <span>{collection.name}</span>
-                )}
-              </div>
-              <div className={styles.collectionInfo}>
-                <h3>{collection.name}</h3>
-                <span>Shop</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.blackout} id="blackout">
-        <div className={styles.blackoutTop}>
-          <div>
-            <p>COMING NEXT</p>
-            <h2><span>BLACK</span>OUT</h2>
-          </div>
-          <div className={styles.blackoutCopy}>
-            <span>{activeDrop.subtitle}</span>
-            <p>{activeDrop.manifesto}</p>
-          </div>
-        </div>
-        <div className={styles.blackoutGrid}>
-          {activeDrop.products.map((product)=>(
-            <Link href={"/products/"+product.slug} className={styles.blackoutCard} key={product.slug}>
-              <div className={styles.blackoutVisual}><span>{product.number}</span><b>MAXOUT</b></div>
-              <div className={styles.blackoutMeta}>
-                <span>{product.name}</span>
-                <span>{"$"+product.price.toFixed(2)}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <form className={styles.form}>
+          <label htmlFor="email">Email address*</label>
+          <input id="email" type="email" placeholder="Enter your email"/>
+          <label className={styles.check}><input type="checkbox"/> <span>Yes, I agree to receive marketing emails.*</span></label>
+          <button type="button">Join Now</button>
+        </form>
       </section>
 
       <footer className={styles.footer}>
-        <Link className={styles.logo} href="/">MAXOUT</Link>
-        <div>
-          <Link href="/collections/core">Shop</Link>
-          <Link href="/collections/america">Collections</Link>
-          <a href="mailto:themaxoutshop@gmail.com">Contact</a>
-        </div>
-        <span>© 2026 MAXOUT</span>
+        <div>© 2026 by MAXOUT</div>
+        <div><span>Shop</span></div>
+        <div><span>Help</span><a href="mailto:themaxoutshop@gmail.com">Contact Us</a></div>
+        <div><span>Legal</span><a href="#">Terms & Conditions</a><a href="#">Privacy Policy</a><a href="#">Refund Policy</a><a href="#">Accessibility Statement</a></div>
       </footer>
     </main>
   );
