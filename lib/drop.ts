@@ -67,6 +67,7 @@ export const archiveCollections:Collection[]=[
       {slug:"maxout-core-tee",name:"MAXOUT Core Tee",price:35,originalPrice:40,category:"Core / Tee",statement:"A daily MAXOUT essential.",number:"C2",accent:"CORE",collection:"core"},
       {slug:"maxout-core-joggers",name:"MAXOUT Core Joggers",price:33,category:"Core / Bottoms",statement:"Everyday joggers built for repeat wear.",number:"C3",accent:"EVERYDAY",collection:"core"},
       {slug:"maxout-core-pants",name:"MAXOUT Core Pants",price:40.59,category:"Core / Bottoms",statement:"Clean everyday pants from the Core collection.",number:"C4",accent:"CORE",collection:"core"},
+      {slug:"maxout-core-shorts",name:"MAXOUT Core Shorts",price:30,category:"Core / Bottoms",statement:"Core training shorts.",number:"C4B",accent:"CORE",collection:"core"},
       {slug:"maxout-core-compression-shirt",name:"MAXOUT Core Compression Shirt",price:28.5,category:"Core / Performance",statement:"Compression fit for training.",number:"C5",accent:"COMPRESSION",collection:"core"},
       {slug:"maxout-core-long-sleeve",name:"MAXOUT Core Long Sleeve",price:29.5,category:"Core / Tops",statement:"Long-sleeve Core layer.",number:"C6",accent:"LAYER",collection:"core"},
       {slug:"maxout-core-muscle-tank",name:"MAXOUT Core Muscle Tank",price:27.33,category:"Core / Training",statement:"Training-first muscle tank.",number:"C7",accent:"TRAINING",collection:"core"},
