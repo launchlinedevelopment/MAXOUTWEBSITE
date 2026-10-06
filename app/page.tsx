@@ -9,7 +9,8 @@ const coreHoodie = core?.products.find((p) => p.slug === "maxout-core-hoodie");
 const accessory = core?.products.find((p) => p.slug === "maxout-core-shaker");
 const women = core?.products.find((p) => p.slug === "maxout-core-leggings");
 
-const heroImage = "https://static.wixstatic.com/media/8255de_8cda307fba7f415a8e35a555b25fc1a4~mv2.png";
+const heroBackground = "https://static.wixstatic.com/media/8255de_06d4a17a72a54f378299eefd86b5f5ff~mv2.png/v1/crop/x_0,y_46,w_2000,h_1072/fill/w_980,h_525,al_c,q_90,enc_auto/unisex-oversized-heavyweight-hoodie-vintage-black-front-69ea2cf73beab.png";
+const heroOverlay = "https://static.wixstatic.com/media/8255de_46ca095df9194b7db0d25a0713924c4f~mv2.png/v1/fill/w_980,h_1307,al_c,q_90,enc_auto/image-v1523157514714288128_edited.png";
 
 export default function Home(){
   return (
@@ -26,7 +27,10 @@ export default function Home(){
       </header>
 
       <section className={styles.hero}>
-        <Image src={heroImage} alt="MAXOUT America Drop" fill priority sizes="100vw"/>
+        <div className={styles.heroBackground}>
+          <Image src={heroBackground} alt="MAXOUT America Drop" fill priority sizes="100vw"/>
+        </div>
+        <Image src={heroOverlay} alt="" width={980} height={1307} className={styles.heroOverlay}/>
         <div className={styles.heroText}>
           <h1>AMERICA DROP IS HERE</h1>
           <p>Limited Stock</p>
