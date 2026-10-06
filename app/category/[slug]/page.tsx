@@ -64,7 +64,7 @@ export default async function CategoryPage({params}:{params:Promise<{slug:string
         </div>
 
         <div className={styles.grid}>
-          {products.map(product=>product && <Link className={styles.card} href={"/products/"+product.slug} key={product.slug}>
+          {products.map(product=>product && <Link className={styles.card} href={"/product-page/"+product.slug} key={product.slug}>
             <div className={styles.image}>
               {product.image ? <Image src={product.image} alt={product.name} fill sizes="(max-width:900px) 50vw, 25vw"/> : <span>MAXOUT</span>}
               {product.originalPrice && <b>SUMMER SALE</b>}
